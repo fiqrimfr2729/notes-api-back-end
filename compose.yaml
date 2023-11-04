@@ -1,0 +1,17 @@
+version: "2"
+services:
+  app:
+    image: node:18.13
+    restart: unless-stopped
+    volumes:
+      - ".:/usr/src/app"
+    working_dir: /usr/src/app
+    environment:
+      - MARIADB_HOST=maria_db.docker
+      - MARIADB_USER=himed
+      - MARIADB_DB=himed
+      - MARIADB_PASSWORD=himed
+      - LISTEN_PORT=5000
+    ports:
+      - "3000:3000"
+    command: bash -c "npm install && npm i -g nodemon && npm run start"
